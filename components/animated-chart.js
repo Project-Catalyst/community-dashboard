@@ -6,30 +6,26 @@ import { Component } from 'react';
 
 ChartJS.register(PolarAreaController, RadialLinearScale, PointElement, LineElement, ArcElement, Tooltip, Legend, Title);
 
-class AnimatedChart extends Component {
-    self = this;
-    constructor(props) {
-        super(props);
-        this.state = {...props}
-    }
+function AnimatedChart(props) {
+    // self = this;
+    // constructor(props) {
+    //     super(props);
+    //     this.state = { ...props }
+    // }
 
-    componentDidMount() {
-        this.setState({
-            chartData: this.props.chartData,
-            chartOptions: this.props.chartOptions,
-        })
-    }
+    // componentDidMount() {
+    //     this.setState({
+    //         chartData: this.props.chartData,
+    //         chartOptions: this.props.chartOptions,
+    //     })
+    // }
 
-    render() {
-        console.log("#########")
-        console.log(this.state)
-        return (
-            <PolarArea
-                data={this.state.chartData}
-                options={this.state.chartOptions}
-            />
-        )
-    }
+    return (
+        <PolarArea
+            data={props.chartData}
+            options={props.chartOptions}
+        />
+    )
 }
 
 // <Pie
