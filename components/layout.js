@@ -4,9 +4,6 @@ import styles from './layout.module.css';
 import utilStyles from '../styles/utils.module.css';
 import Link from 'next/link';
 
-const name = 'Plamen Petkov';
-export const siteTitle = 'Community Dashboard';
-
 export default function Layout({ children, home }) {
   return (
     <div className={styles.container}>
@@ -16,7 +13,6 @@ export default function Layout({ children, home }) {
           name="description"
           content="community dashboard showing CA and vCA progress and stats"
         />
-        <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <main>{children}</main>
