@@ -11,32 +11,28 @@ import ReactDOM from 'react-dom';
 import Slider from '@mui/material/Slider';
 
 import Link from 'next/link';
+import { stepConnectorClasses } from '@mui/material';
 
 export async function getStaticProps() {
   const data = await getChartDataFromJson()
-  console.log(data.animationData)
   return {
     props: {
-      chartData: data.chartData,
-      chartOptions: data.chartOptions,
-      animation: data.animationData,
-      now: 90
+      fundsData: data.fundsData
     },
   }
 }
 
 function Home(props) {
 
-  const [boundProps, setBoundProps] = useState(props);
-  function valuetext(value) {
-    return `${value}°C`;
-  }
-  const handleChange = (event, newValue) => {
-    console.log(newValue);
-    function getRandomNub() {
-      return Math.random() * 100;
-    }
-    setBoundProps({ ...boundProps, now: getRandomNub(), chartData: props.animation[newValue] })
+
+  //set based on dropdown
+  const [boundProps, setBoundProps] = useState(props.fundsData[0].fundData);
+
+  const handleChange = (_, newValue) => {
+    setBoundProps({
+      ...boundProps,
+      chartData: boundProps.animationData[newValue]
+    })
   };
 
   return (
@@ -46,19 +42,21 @@ function Home(props) {
       </Head>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Fund 1</h2>
-        <AnimatedChart chartData={boundProps.chartData} chartOptions={boundProps.chartOptions} />
+        <AnimatedChart
+          chartData={boundProps.chartData}
+          chartOptions={boundProps.chartOptions}
+        />
       </section>
       <section>
         <Slider
           aria-label="Temperature"
           defaultValue={0}
-          getAriaValueText={valuetext}
           valueLabelDisplay="auto"
           onChange={handleChange}
           step={1}
           marks
           min={0}
-          max={props.animation.length - 1}
+          max={boundProps.animationData.length - 1}
         />
       </section>
     </Layout>
