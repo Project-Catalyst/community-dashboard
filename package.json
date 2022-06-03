@@ -4,11 +4,17 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev-express": "nodemon ./express/index.js",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@mui/material": "^5.8.2",
+    "bootstrap": "^5.1.3",
+    "express": "^4.18.1",
     "next": "12.1.6",
     "react": "18.1.0",
     "react-bootstrap": "^2.4.0",
@@ -17,6 +23,7 @@
   },
   "devDependencies": {
     "eslint": "8.16.0",
-    "eslint-config-next": "12.1.6"
+    "eslint-config-next": "12.1.6",
+    "nodemon": "^2.0.16"
   }
 }

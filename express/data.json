@@ -1,0 +1,210 @@
+{
+    "chartData": {
+        "animationEnabled": true,
+        "exportEnabled": true,
+        "theme": "dark2",
+        "labels": [
+            "at least 1 assessment",
+            "at least 2 assessments",
+            "at least 3 assessments",
+            "at least 4 assessments",
+            "at least 5 assessments",
+            "at least 6 assessments",
+            "at least 7 assessments"
+        ],
+        "datasets": [
+            {
+                "label": "% of Votes",
+                "data": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7
+                ],
+                "weight": 12,
+                "backgroundColor": [
+                    "rgba(255, 99, 132, 0.2)",
+                    "rgba(54, 162, 235, 0.2)",
+                    "rgba(255, 206, 86, 0.2)",
+                    "rgba(75, 192, 192, 0.2)",
+                    "rgba(153, 102, 255, 0.2)",
+                    "rgba(255, 159, 64, 0.2)"
+                ],
+                "borderColor": [
+                    "rgba(255, 99, 132, 1)",
+                    "rgba(54, 162, 235, 1)",
+                    "rgba(255, 206, 86, 1)",
+                    "rgba(75, 192, 192, 1)",
+                    "rgba(153, 102, 255, 1)",
+                    "rgba(255, 159, 64, 1)"
+                ],
+                "borderWidth": 1
+            }
+        ]
+    },
+    "chartOptions": {
+        "plugins": {
+            "title": {
+                "display": true,
+                "text": "Proposals with atleast N assessment",
+                "fontSize": 20
+            }
+        },
+        "responsive": true
+    },
+    "animationData": [
+        {
+            "labels": [
+                "at least 1 assessment",
+                "at least 2 assessments",
+                "at least 3 assessments",
+                "at least 4 assessments",
+                "at least 5 assessments",
+                "at least 6 assessments",
+                "at least 7 assessments"
+            ],
+            "datasets": [
+                {
+                    "label": "% of Votes",
+                    "data": [
+                        3,
+                        4,
+                        5,
+                        6,
+                        7,
+                        8,
+                        9
+                    ]
+                }
+            ]
+        },
+        {
+            "labels": [
+                "at least 1 assessment",
+                "at least 2 assessments",
+                "at least 3 assessments",
+                "at least 4 assessments",
+                "at least 5 assessments",
+                "at least 6 assessments",
+                "at least 7 assessments"
+            ],
+            "datasets": [
+                {
+                    "label": "% of Votes",
+                    "data": [
+                        4,
+                        7,
+                        16,
+                        52,
+                        55,
+                        45,
+                        51
+                    ]
+                }
+            ]
+        },
+        {
+            "labels": [
+                "at least 1 assessment",
+                "at least 2 assessments",
+                "at least 3 assessments",
+                "at least 4 assessments",
+                "at least 5 assessments",
+                "at least 6 assessments",
+                "at least 7 assessments"
+            ],
+            "datasets": [
+                {
+                    "label": "% of Votes",
+                    "data": [
+                        4,
+                        10,
+                        23,
+                        72,
+                        42,
+                        542,
+                        521
+                    ]
+                }
+            ]
+        },
+        {
+            "labels": [
+                "at least 1 assessment",
+                "at least 2 assessments",
+                "at least 3 assessments",
+                "at least 4 assessments",
+                "at least 5 assessments",
+                "at least 6 assessments",
+                "at least 7 assessments"
+            ],
+            "datasets": [
+                {
+                    "label": "% of Votes",
+                    "data": [
+                        4,
+                        10,
+                        23,
+                        33,
+                        235,
+                        542,
+                        12
+                    ]
+                }
+            ]
+        },
+        {
+            "labels": [
+                "at least 1 assessment",
+                "at least 2 assessments",
+                "at least 3 assessments",
+                "at least 4 assessments",
+                "at least 5 assessments",
+                "at least 6 assessments",
+                "at least 7 assessments"
+            ],
+            "datasets": [
+                {
+                    "label": "% of Votes",
+                    "data": [
+                        4,
+                        10,
+                        23,
+                        72,
+                        235,
+                        542,
+                        2
+                    ]
+                }
+            ]
+        },
+        {
+            "labels": [
+                "at least 1 assessment",
+                "at least 2 assessments",
+                "at least 3 assessments",
+                "at least 4 assessments",
+                "at least 5 assessments",
+                "at least 6 assessments",
+                "at least 7 assessments"
+            ],
+            "datasets": [
+                {
+                    "label": "% of Votes",
+                    "data": [
+                        4,
+                        10,
+                        23,
+                        72,
+                        235,
+                        23,
+                        521
+                    ]
+                }
+            ]
+        }
+    ]
+}
