@@ -4,11 +4,13 @@ import AnimatedChart from '../components/animated-chart';
 import utilStyles from '../styles/utils.module.css';
 import { getChartDataFromJson, getChartOptions } from '../lib/chart-data-logic';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button, ProgressBar } from "react-bootstrap";
-import { Component, useEffect, useState } from 'react';
+import { useState } from 'react';
 import * as React from 'react';
-import ReactDOM from 'react-dom';
 import Slider from '@mui/material/Slider';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 
 import Link from 'next/link';
 import { stepConnectorClasses } from '@mui/material';
@@ -26,12 +28,26 @@ function Home(props) {
 
 
   //set based on dropdown
+  const [fundNumber, setFundNumber] = React.useState(0);
+
   const [boundProps, setBoundProps] = useState(props.fundsData[0].fundData);
 
-  const handleChange = (_, newValue) => {
+  const [animation, setAnimation] = useState(props.fundsData[0].fundData.animationData);
+
+  const menuItems = props.fundsData.map((element, index) => {
+    return <MenuItem key={element.fundId} value={index}>{element.fundName}</MenuItem>
+  })
+
+  const handleDropdownChange = (event) => {
+    const chosenFundIndex = event.target.value
+    setFundNumber(chosenFundIndex);
+    setAnimation(props.fundsData[chosenFundIndex].fundData.animationData);
+  };
+
+  const handleSliderChange = (_, newValue) => {
     setBoundProps({
       ...boundProps,
-      chartData: boundProps.animationData[newValue]
+      chartData: animation[newValue]
     })
   };
 
@@ -41,7 +57,17 @@ function Home(props) {
         <title>Community Dashboard</title>
       </Head>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Fund 1</h2>
+        <FormControl fullWidth>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={fundNumber}
+            label="Fund"
+            onChange={handleDropdownChange}
+          >
+            {menuItems}
+          </Select>
+        </FormControl>
         <AnimatedChart
           chartData={boundProps.chartData}
           chartOptions={boundProps.chartOptions}
@@ -51,12 +77,12 @@ function Home(props) {
         <Slider
           aria-label="Temperature"
           defaultValue={0}
-          valueLabelDisplay="auto"
-          onChange={handleChange}
+          valueLabelDisplay="off"
+          onChange={handleSliderChange}
           step={1}
           marks
           min={0}
-          max={boundProps.animationData.length - 1}
+          max={animation.length - 1}
         />
       </section>
     </Layout>
