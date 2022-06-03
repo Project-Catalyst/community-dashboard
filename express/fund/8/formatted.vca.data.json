@@ -1,0 +1,121 @@
+{
+    "fundName": "Fund 8",
+    "fundId": "8",
+    "fundData": {
+        "animationData": [
+            {
+                "labels": [
+                    "at least 31 assessments",
+                    "at least 32 assessments",
+                    "at least 33 assessments",
+                    "at least 34 assessments",
+                    "at least 35 assessments",
+                    "at least 36 assessments"
+                ],
+                "datasets": [
+                    {
+                        "label": "Assessments",
+                        "data": [
+                            8,
+                            3,
+                            2,
+                            0,
+                            0,
+                            0
+                        ]
+                    }
+                ]
+            },
+            {
+                "labels": [
+                    "at least 3 assessments",
+                    "at least 4 assessments",
+                    "at least 5 assessments",
+                    "at least 6 assessments"
+                ],
+                "datasets": [
+                    {
+                        "label": "Assessments",
+                        "data": [
+                            9155,
+                            5864,
+                            4168,
+                            3085
+                        ]
+                    }
+                ]
+            },
+            {
+                "labels": [
+                    "at least 21 assessments",
+                    "at least 22 assessments",
+                    "at least 23 assessments",
+                    "at least 24 assessments",
+                    "at least 25 assessments",
+                    "at least 26 assessments"
+                ],
+                "datasets": [
+                    {
+                        "label": "Assessments",
+                        "data": [
+                            279,
+                            205,
+                            151,
+                            115,
+                            82,
+                            60
+                        ]
+                    }
+                ]
+            },
+            {
+                "labels": [
+                    "at least 25 assessments",
+                    "at least 26 assessments",
+                    "at least 27 assessments",
+                    "at least 28 assessments",
+                    "at least 29 assessments",
+                    "at least 30 assessments",
+                    "at least 31 assessments"
+                ],
+                "datasets": [
+                    {
+                        "label": "Assessments",
+                        "data": [
+                            82,
+                            60,
+                            45,
+                            34,
+                            24,
+                            14,
+                            8
+                        ]
+                    }
+                ]
+            },
+            {
+                "labels": [
+                    "at least 31 assessments",
+                    "at least 32 assessments",
+                    "at least 33 assessments",
+                    "at least 34 assessments",
+                    "at least 35 assessments",
+                    "at least 36 assessments"
+                ],
+                "datasets": [
+                    {
+                        "label": "Assessments",
+                        "data": [
+                            8,
+                            3,
+                            2,
+                            0,
+                            0,
+                            0
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
