@@ -90,7 +90,7 @@ const chartOptions = {
     "plugins": {
         "title": {
             "display": true,
-            "text": "Proposals with atleast N assessment",
+            "text": "Assessments with atleast N vCA reviews",
             "font": {
                 "size": 30
             }
