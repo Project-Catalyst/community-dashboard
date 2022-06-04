@@ -6,7 +6,7 @@ import Slider from '@mui/material/Slider';
 import Button from '@mui/material/Button';
 import * as React from 'react';
 import { useState, useRef } from 'react';
-import utilStyles from '../styles/utils.module.css';
+import utilStyles from './slider-chart.module.css';
 
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title, PolarAreaController, RadialLinearScale, PointElement, LineElement } from 'chart.js';
 import { Pie, PolarArea, getElementAtEvent } from 'react-chartjs-2';
@@ -86,10 +86,6 @@ function SliderChart(props) {
                     onClick={runAnimation}
                 > Run Animation
                 </Button>
-                {/* <Pie
-                data={chartData}
-                options={chartOptions}
-                /> */}
 
             </section>
             <section>

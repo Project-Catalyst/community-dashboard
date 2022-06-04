@@ -1,10 +1,12 @@
+
+import Layout from '../components/layout';
 import Head from 'next/head';
-import Layout, { siteTitle } from '../components/layout';
+import Link from '@mui/material/Link';
+import SliderChart from '../components/slider-chart';
 
 import { getChartDataFromJson } from '../lib/chart-data-logic';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
-import SliderChart from '../components/slider-chart';
-import * as React from 'react';
 
 
 export async function getStaticProps() {
@@ -24,6 +26,12 @@ function Home(props) {
       <Head>
         <title>Community Dashboard</title>
       </Head>
+      <Link
+        className="position-absolute top-0 end-0 m-4 text-decoration-none"
+        href="#"
+        color="inherit">
+        CA / vCA Rewards Estimator
+      </Link>
       <SliderChart
         fundsData={props.fundsData}
         chartOptions={props.chartOptions}
