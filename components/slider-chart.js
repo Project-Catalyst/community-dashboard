@@ -14,9 +14,6 @@ import { Pie, PolarArea, getElementAtEvent } from 'react-chartjs-2';
 ChartJS.register(PolarAreaController, RadialLinearScale, PointElement, LineElement, ArcElement, Tooltip, Legend, Title);
 
 function SliderChart(props) {
-    const sleep = (milliseconds) => {
-        return new Promise(resolve => setTimeout(resolve, milliseconds))
-    }
 
     const chartRef = useRef();
     const [animationIntervalId, setAnimationIntervalId] = React.useState();
