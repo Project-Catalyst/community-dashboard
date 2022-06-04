@@ -12,29 +12,37 @@ export default function Estimator() {
             <Head>
                 <title>Rewards Estimator</title>
             </Head>
-            <section className="m-5">
-                <InputLabel className="text-dark  m-2">
-                    CA Rewards Estimator
-                </InputLabel>
-                <TextField
-                    id="outlined-basic"
-                    className="full-width m-2"
-                    label="Assessor_ID (search)"
-                    variant="outlined" />
-                <Button variant="outlined" className="m-3">Go!</Button>
-            </section>
-            <section className="m-5">
-                <InputLabel className="text-dark m-2">
-                    vCA Rewards Estimator
-                </InputLabel>
-                <TextField
-                    id="outlined-basic"
-                    className="full-width m-2"
-                    label="vCA reviewer (search)"
-                    variant="outlined"
-                />
-                <Button variant="outlined" className="m-3">Go!</Button>
-            </section>
-        </Layout>
+            <div class="container border mt-5 p-5">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-md-3">
+                        <InputLabel className="text-dark">
+                            CA Rewards Estimator
+                        </InputLabel>
+                        <TextField
+                            id="outlined-basic"
+                            label="Assessor_ID (search)"
+                            variant="outlined" />
+                    </div>
+                    <div class="col-md-1">
+                        <Button variant="outlined">Go!</Button>
+                    </div>
+                </div>
+                <div class="row justify-content-center mt-5 align-items-center">
+                    <div class="col-md-3">
+                        <InputLabel className="text-dark">
+                            vCA Rewards Estimator
+                        </InputLabel>
+                        <TextField
+                            id="outlined-basic"
+                            label="vCA reviewer (search)"
+                            variant="outlined"
+                        />
+                    </div>
+                    <div class="col-md-1">
+                        <Button variant="outlined">Go!</Button>
+                    </div>
+                </div>
+            </div>
+        </Layout >
     )
 }

@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function Layout({ children, home }) {
   return (
-    <div className="">
+    <div class="container">
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
@@ -15,7 +15,7 @@ export default function Layout({ children, home }) {
       </Head>
       <main>{children}</main>
       {!home && (
-        <div className="">
+        <div>
           <Link href="/">
             <a>← Back to home</a>
           </Link>
