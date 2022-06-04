@@ -58,9 +58,9 @@ function SliderChart(props) {
 
     return (
 
-        <div class='container border mt-5'>
-            <div class="row justify-content-center mt-5">
-                <div class="col-md-6">
+        <div className='container border mt-5'>
+            <div className="row justify-content-center mt-5">
+                <div className="col-md-6">
                     <FormControl fullWidth>
                         <Select
                             value={fundNumber}
@@ -87,7 +87,7 @@ function SliderChart(props) {
                     > Run Animation
                     </Button>
                 </div>
-                <div class="col-md-7 mb-5">
+                <div className="col-md-7 mb-5">
                     <Slider
                         aria-label="chartDataSlider"
                         defaultValue={0}
