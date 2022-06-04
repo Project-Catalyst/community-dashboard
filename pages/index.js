@@ -28,6 +28,10 @@ function Home(props) {
         fundsData={props.fundsData}
         chartOptions={props.chartOptions}
       />
+      <SliderChart
+        fundsData={props.fundsData}
+        chartOptions={props.chartOptions}
+      />
     </Layout>
   )
 }

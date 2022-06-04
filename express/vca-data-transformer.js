@@ -122,7 +122,6 @@ const updateChartData = (fundId, minLowerBound, minUpperBound) => {
  */
 const writeVcaDataToFile = (vcaData, fileName) => {
     const json = JSON.stringify(vcaData)
-    console.log(json)
     fs.writeFile(fileName, json, (err) => {
         if (err) {
             console.error(err)

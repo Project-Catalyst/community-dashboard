@@ -16,12 +16,10 @@ function attemptToUpdate() {
 app.get('/', (req, res) => {
     const fundsData = [7, 8].map(fundId => {
         const fundX = require(`${process.cwd()}/express/fund/${fundId}/formatted.vca.data.json`)
-        console.log(pieChartStyling)
         Object.assign(fundX.fundData.animationData[0].datasets[0], pieChartStyling)
         return fundX
     })
 
-    console.log(fundsData)
     const response = {
         fundsData: fundsData,
         chartOptions: chartOptions
