@@ -1,13 +1,10 @@
 
 import Layout from '../components/layout';
 import Head from 'next/head';
-import Link from '@mui/material/Link';
+import Link from 'next/link'
 import SliderChart from '../components/slider-chart';
 
 import { getChartDataFromJson } from '../lib/chart-data-logic';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
-
 
 export async function getStaticProps() {
   const data = await getChartDataFromJson()
@@ -27,10 +24,11 @@ function Home(props) {
         <title>Community Dashboard</title>
       </Head>
       <Link
-        className="position-absolute top-0 end-0 m-4 text-decoration-none"
-        href="#"
+        href={`/estimator`}
         color="inherit">
-        CA / vCA Rewards Estimator
+        <a
+        className="position-absolute top-0 end-0 m-4 text-decoration-none"
+        >CA / vCA Rewards Estimator</a>
       </Link>
       <SliderChart
         fundsData={props.fundsData}

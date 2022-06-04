@@ -6,7 +6,7 @@ import Slider from '@mui/material/Slider';
 import Button from '@mui/material/Button';
 import * as React from 'react';
 import { useState, useRef } from 'react';
-import utilStyles from './slider-chart.module.css';
+// import utilStyles from './slider-chart.module.css';
 
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title, PolarAreaController, RadialLinearScale, PointElement, LineElement } from 'chart.js';
 import { Pie, PolarArea, getElementAtEvent } from 'react-chartjs-2';
@@ -58,49 +58,49 @@ function SliderChart(props) {
 
     return (
 
-        <section>
-            <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-
-                <FormControl fullWidth>
-                    <Select
-                        value={fundNumber}
-                        label="Fund"
-                        onChange={handleDropdownChange}>
-                        {menuItems}
-                    </Select>
-                </FormControl>
-
-                <PolarArea
-                    ref={chartRef}
-                    data={animation[thumbPosition]}
-                    options={chartOptions}
-                    onClick={(event) => {
-                        let possiblePieSlice = getElementAtEvent(chartRef.current, event)
-                        let index = possiblePieSlice[0]?.index
-                        if (index !== undefined) {
-                            console.log(index)
-                        }
-                    }}
-                />
-                <Button
-                    onClick={runAnimation}
-                > Run Animation
-                </Button>
-
-            </section>
-            <section>
-                <Slider
-                    aria-label="chartDataSlider"
-                    defaultValue={0}
-                    valueLabelDisplay="off"
-                    onChange={handleSliderChange}
-                    step={1}
-                    min={0}
-                    marks
-                    max={animation.length - 1}
-                />
-            </section>
-        </section >
+        <div class='container border mt-5'>
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-6">
+                    <FormControl fullWidth>
+                        <Select
+                            value={fundNumber}
+                            label="Fund"
+                            onChange={handleDropdownChange}>
+                            {menuItems}
+                        </Select>
+                    </FormControl>
+                    <PolarArea
+                        ref={chartRef}
+                        data={animation[thumbPosition]}
+                        options={chartOptions}
+                        onClick={(event) => {
+                            let possiblePieSlice = getElementAtEvent(chartRef.current, event)
+                            let index = possiblePieSlice[0]?.index
+                            if (index !== undefined) {
+                                console.log(index)
+                            }
+                        }}
+                    />
+                    <Button
+                        fullWidth
+                        onClick={runAnimation}
+                    > Run Animation
+                    </Button>
+                </div>
+                <div class="col-md-7 mb-5">
+                    <Slider
+                        aria-label="chartDataSlider"
+                        defaultValue={0}
+                        valueLabelDisplay="off"
+                        onChange={handleSliderChange}
+                        step={1}
+                        min={0}
+                        marks
+                        max={animation.length - 1}
+                    />
+                </div>
+            </div>
+        </div>
     );
 }
 
