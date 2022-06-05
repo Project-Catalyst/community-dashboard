@@ -1,4 +1,4 @@
-import Layout from "../components/layout";
+import Layout from "../../components/layout";
 import Head from 'next/head';
 import Link from 'next/link';
 
@@ -6,26 +6,50 @@ import InputLabel from '@mui/material/InputLabel';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useState } from "react";
+import { useRouter } from 'next/router';
+
 
 export default function Estimator() {
+    const ENTER_KEY_CODE = 13
+    const router = useRouter();
 
-    const [caRewardsInput, setCaRewardsInput] = useState("")
-    const [vCaRewardsInput, setVcaRewardsInput] = useState("")
+    //CA
+    const [assessorId, setAssessorId] = useState("")
+
+    const navigateToCaWithParameters = {
+        pathname: '/estimator/ca-rewards',
+        query: { assessorId }
+    }
+
+    function caButtonHandler(e) {
+        navigateWithRouterParams(e, navigateToCaWithParameters)
+    }
+
+    function caTextInputChange(event) {
+        setAssessorId(event.target.value);
+    };
+
+    //vCA
+    const [vcaReviewer, setVcaRewardsInput] = useState("")
+
+    const navigateTovCaWithParameters = {
+        pathname: '/estimator/vca-rewards',
+        query: { vCaRewardsInput: vcaReviewer }
+    }
+
+    function vCaButtonHandler(e) {
+        navigateWithRouterParams(e, navigateTovCaWithParameters)
+    }
 
     function vcaTextInputChange(event) {
         setVcaRewardsInput(event.target.value);
     };
 
-    function vCaButtonHandler(event) {
-        console.log(vCaRewardsInput)
-    }
-
-    function caTextInputChange(event) {
-        setCaRewardsInput(event.target.value);
-    };
-
-    function caButtonHandler(event) {
-        console.log(caRewardsInput)
+    //common
+    function navigateWithRouterParams(e, routerNavigationParams) {
+        if (ENTER_KEY_CODE === e.keyCode) {
+            router.push(routerNavigationParams)
+        }
     }
 
     return (
@@ -41,7 +65,8 @@ export default function Estimator() {
                             CA Rewards Estimator
                         </InputLabel>
                         <TextField
-                            value={caRewardsInput}
+                            value={assessorId}
+                            onKeyDown={caButtonHandler}
                             onChange={caTextInputChange}
                             id="outlined-basic"
                             label="Assessor_ID (search)"
@@ -49,13 +74,9 @@ export default function Estimator() {
                     </div>
                     <div className="col-md-1">
                         <Link
-                            query={caRewardsInput}
-                            href="/ca-rewards"
+                            href={navigateToCaWithParameters}
                             passHref>
-                            <Button
-                                variant="outlined"
-                                onClick={caButtonHandler}>
-                                Go!</Button>
+                            <Button variant="outlined">Go!</Button>
                         </Link>
                     </div>
                 </div>
@@ -65,7 +86,8 @@ export default function Estimator() {
                             vCA Rewards Estimator
                         </InputLabel>
                         <TextField
-                            value={vCaRewardsInput}
+                            value={vcaReviewer}
+                            onKeyDown={vCaButtonHandler}
                             onChange={vcaTextInputChange}
                             id="outlined-basic"
                             label="vCA reviewer (search)"
@@ -73,11 +95,11 @@ export default function Estimator() {
                         />
                     </div>
                     <div className="col-md-1">
-                        <Link query={vCaRewardsInput} href="/vca-rewards" passHref>
-                            <Button
-                                variant="outlined"
-                                onClick={vCaButtonHandler}
-                            >Go!</Button>
+                        <Link
+                            query={vcaReviewer}
+                            href={navigateTovCaWithParameters}
+                            passHref>
+                            <Button variant="outlined">Go!</Button>
                         </Link>
 
                     </div>

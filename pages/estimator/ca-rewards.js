@@ -1,12 +1,16 @@
-import Layout from "../components/layout";
+import Layout from "../../components/layout";
 import Head from 'next/head';
 import Link from 'next/link';
+import { useRouter } from 'next/router'
 
-export default function VcaRewards({ assessorId }) {
+export default function CaRewards() {
+    const router = useRouter()
+    const { assessorId } = router.query
+
     return (
         <Layout>
             <Head>
-                <title>vCA Rewards Estimate</title>
+                <title>CA Rewards Estimate</title>
             </Head>
             <div>
                 <p>
