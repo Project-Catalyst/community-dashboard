@@ -34,7 +34,7 @@ export default function Estimator() {
 
     const navigateTovCaWithParameters = {
         pathname: '/estimator/vca-rewards',
-        query: { vCaRewardsInput: vcaReviewer }
+        query: { vcaReviewer }
     }
 
     function vCaButtonHandler(e) {

@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 
 export default function VcaRewards() {
     const router = useRouter()
-    const { vCaRewardsInput } = router.query
+    const { vcaReviewer } = router.query
 
     return (
         <Layout>
@@ -14,7 +14,7 @@ export default function VcaRewards() {
             </Head>
             <div>
                 <p>
-                    {vCaRewardsInput}
+                    {vcaReviewer}
                 </p>
                 <Link href="/estimator">
                     <a>← Back to estimator</a>
