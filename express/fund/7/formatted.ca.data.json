@@ -5,16 +5,16 @@
         "animationData": [
             {
                 "labels": [
-                    "at least 31 reviews",
-                    "at least 32 reviews",
-                    "at least 33 reviews",
-                    "at least 34 reviews",
-                    "at least 35 reviews",
-                    "at least 36 reviews"
+                    "at least 31 assessments",
+                    "at least 32 assessments",
+                    "at least 33 assessments",
+                    "at least 34 assessments",
+                    "at least 35 assessments",
+                    "at least 36 assessments"
                 ],
                 "datasets": [
                     {
-                        "label": "Reviews",
+                        "label": "Assessments",
                         "data": [
                             8,
                             3,
@@ -28,14 +28,14 @@
             },
             {
                 "labels": [
-                    "at least 3 reviews",
-                    "at least 4 reviews",
-                    "at least 5 reviews",
-                    "at least 6 reviews"
+                    "at least 3 assessments",
+                    "at least 4 assessments",
+                    "at least 5 assessments",
+                    "at least 6 assessments"
                 ],
                 "datasets": [
                     {
-                        "label": "Reviews",
+                        "label": "Assessments",
                         "data": [
                             9155,
                             5864,
@@ -47,16 +47,16 @@
             },
             {
                 "labels": [
-                    "at least 21 reviews",
-                    "at least 22 reviews",
-                    "at least 23 reviews",
-                    "at least 24 reviews",
-                    "at least 25 reviews",
-                    "at least 26 reviews"
+                    "at least 21 assessments",
+                    "at least 22 assessments",
+                    "at least 23 assessments",
+                    "at least 24 assessments",
+                    "at least 25 assessments",
+                    "at least 26 assessments"
                 ],
                 "datasets": [
                     {
-                        "label": "Reviews",
+                        "label": "Assessments",
                         "data": [
                             279,
                             205,
@@ -70,17 +70,17 @@
             },
             {
                 "labels": [
-                    "at least 25 reviews",
-                    "at least 26 reviews",
-                    "at least 27 reviews",
-                    "at least 28 reviews",
-                    "at least 29 reviews",
-                    "at least 30 reviews",
-                    "at least 31 reviews"
+                    "at least 25 assessments",
+                    "at least 26 assessments",
+                    "at least 27 assessments",
+                    "at least 28 assessments",
+                    "at least 29 assessments",
+                    "at least 30 assessments",
+                    "at least 31 assessments"
                 ],
                 "datasets": [
                     {
-                        "label": "Reviews",
+                        "label": "Assessments",
                         "data": [
                             82,
                             60,
@@ -95,16 +95,16 @@
             },
             {
                 "labels": [
-                    "at least 31 reviews",
-                    "at least 32 reviews",
-                    "at least 33 reviews",
-                    "at least 34 reviews",
-                    "at least 35 reviews",
-                    "at least 36 reviews"
+                    "at least 31 assessments",
+                    "at least 32 assessments",
+                    "at least 33 assessments",
+                    "at least 34 assessments",
+                    "at least 35 assessments",
+                    "at least 36 assessments"
                 ],
                 "datasets": [
                     {
-                        "label": "Reviews",
+                        "label": "Assessments",
                         "data": [
                             8,
                             3,

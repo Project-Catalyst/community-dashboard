@@ -4,14 +4,17 @@ import Head from 'next/head';
 import Link from 'next/link'
 import SliderChart from '../components/slider-chart';
 
-import { getChartDataFromJson } from '../lib/chart-data-logic';
+import { getVcaChartDataFromJson, getCaChartDataFromJson } from '../lib/chart-data-logic';
 
 export async function getStaticProps() {
-  const data = await getChartDataFromJson()
+  const vCaData = await getVcaChartDataFromJson()
+  const caData = await getCaChartDataFromJson()
   return {
     props: {
-      fundsData: data.fundsData,
-      chartOptions: data.chartOptions
+      vCaFundsData: vCaData.vCaFundsData,
+      vCaChartOptions: vCaData.vCaChartOptions,
+      caFundsData: caData.caFundsData,
+      caChartOptions: caData.caChartOptions
     },
   }
 }
@@ -31,12 +34,12 @@ function Home(props) {
         >CA / vCA Rewards Estimator</a>
       </Link>
       <SliderChart
-        fundsData={props.fundsData}
-        chartOptions={props.chartOptions}
+        fundsData={props.caFundsData}
+        chartOptions={props.caChartOptions}
       />
       <SliderChart
-        fundsData={props.fundsData}
-        chartOptions={props.chartOptions}
+        fundsData={props.vCaFundsData}
+        chartOptions={props.vCaChartOptions}
       />
     </Layout>
   )

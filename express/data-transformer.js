@@ -6,14 +6,14 @@ const fs = require('fs')
  * The end result looks like:
  {
     "labels": [
-        "at least 1 assessment",
-        "at least 2 assessments",
-        "at least .. assessments",
-        "at least minimumNumberOfAssessments assessments",
+        "at least 1 assessment/reviews",
+        "at least 2 assessments/reviews",
+        "at least .. assessments/reviews",
+        "at least minimumNumberOfAssessments assessments/reviews",
     ],
     "datasets": [
         {
-            "label": "% of Votes",
+            "label": "Reviews/Assessments",
             "data": [
                 4,
                 10,
@@ -30,31 +30,29 @@ const fs = require('fs')
  * @param {*} atLeastUpperBound the minimum upper bound of assessments that must be present in the raw data and will be counted
  * @returns a formated data slice that can be used to create a chart
  */
-const extractChartDataSlice = (rawVcaData, atLeastLowerBound, atLeastUpperBound) => {
+const extractChartDataSlice = (rawVcaData, atLeastLowerBound, atLeastUpperBound, forVca) => {
 
     const animationData = {
         labels: [],
         datasets: [
             {
-                label: "Assessments",
+                label: forVca ? 'Reviews' : 'Assessments',
                 data: []
             }
         ]
     }
 
     for (let atLeast = atLeastLowerBound; atLeast <= atLeastUpperBound; atLeast++) {
-        animationData.labels.push(`at least ${atLeast} assessments`)
+        animationData.labels.push(`at least ${atLeast} ${forVca ? 'reviews' : 'assessments'}`)
         atleastCount = {}
         atleastCount[atLeast] = 0
         Object.keys(rawVcaData).map(key => {
-            if (rawVcaData[key] > atLeast) {
+            if (rawVcaData[key] >= atLeast) {
                 atleastCount[atLeast] = atleastCount[atLeast] + 1 || 1
             }
         })
         animationData.datasets[0].data.push(atleastCount[atLeast])
     }
-
-    // Object.assign(animationData.datasets[0], pieChartStyling)
 
     return animationData
 }
@@ -62,7 +60,7 @@ const extractChartDataSlice = (rawVcaData, atLeastLowerBound, atLeastUpperBound)
 /**
  * This is the styling for the chart slice
  */
-const pieChartStyling = {
+const vCaPieChartStyling = {
     weight: 12,
     backgroundColor: [
         "rgba(255, 99, 132, 0.2)",
@@ -86,11 +84,51 @@ const pieChartStyling = {
 /**
  * These are the default chart options
  */
-const chartOptions = {
+const vCaChartOptions = {
     "plugins": {
         "title": {
             "display": true,
-            "text": "Assessments with atleast N vCA reviews",
+            "text": "vCA Progress",
+            "font": {
+                "size": 30
+            }
+        }
+    },
+    "responsive": true
+}
+
+/**
+ * This is the styling for the chart slice
+ */
+ const caPieChartStyling = {
+    weight: 12,
+    backgroundColor: [
+        "rgba(255, 0, 0, 1)",
+        "rgba(0, 255, 0, 1)",
+        "rgba(0, 0, 255, 1)",
+        "rgba(123, 192, 192, 1)",
+        "rgba(153, 12, 255, 1)",
+        "rgba(255, 159, 164, 1)"
+    ],
+    borderColor: [
+        "rgba(255, 99, 132, 1)",
+        "rgba(54, 162, 235, 1)",
+        "rgba(255, 206, 86, 1)",
+        "rgba(75, 192, 192, 1)",
+        "rgba(153, 102, 255, 1)",
+        "rgba(255, 159, 64, 1)"
+    ],
+    borderWidth: 1
+}
+
+/**
+ * These are the default chart options
+ */
+const caChartOptions = {
+    "plugins": {
+        "title": {
+            "display": true,
+            "text": "CA Progress",
             "font": {
                 "size": 30
             }
@@ -100,18 +138,19 @@ const chartOptions = {
 }
 
 
-const appendSliceToFundData = (slice, fundId) => {
-    const currentFundData = require(`./fund/${fundId}/formatted.vca.data.json`)
+
+const appendSliceToFundData = (slice, fundId, forVca) => {
+    const caOrVca = forVca ? 'vca' : 'ca'
+    const currentFundData = require(`./fund/${fundId}/formatted.${caOrVca}.data.json`)
     currentFundData.fundData.animationData.push(slice)
     return currentFundData
 }
 
-const updateChartData = (fundId, minLowerBound, minUpperBound) => {
+const updateChartData = (fundId, minLowerBound, minUpperBound, forVca) => {
     const rawVcaData = require(`./fund/${fundId}/raw.vca.data.json`)
-    const dataSlice = extractChartDataSlice(rawVcaData, minLowerBound, minUpperBound)
-    const updatedFundData = appendSliceToFundData(dataSlice, fundId)
-    console.log(`PROCESS: ${process.cwd()}`)
-    writeVcaDataToFile(updatedFundData, `${process.cwd()}/express/fund/${fundId}/formatted.vca.data.json`)
+    const dataSlice = extractChartDataSlice(rawVcaData, minLowerBound, minUpperBound, forVca)
+    const updatedFundData = appendSliceToFundData(dataSlice, fundId, forVca)
+    writeDataToFile(updatedFundData, `${process.cwd()}/express/fund/${fundId}/formatted.vca.data.json`)
 }
 
 /**
@@ -120,7 +159,7 @@ const updateChartData = (fundId, minLowerBound, minUpperBound) => {
  * @param {*} vcaData the data file ready to be appended to the chart
  * @param {*} fileName the name of the file to be saved
  */
-const writeVcaDataToFile = (vcaData, fileName) => {
+const writeDataToFile = (vcaData, fileName) => {
     const json = JSON.stringify(vcaData)
     fs.writeFile(fileName, json, (err) => {
         if (err) {
@@ -134,6 +173,8 @@ const writeVcaDataToFile = (vcaData, fileName) => {
 module.exports = {
     extractChartDataSlice,
     updateChartData,
-    chartOptions,
-    pieChartStyling
+    vCaChartOptions,
+    vCaPieChartStyling,
+    caChartOptions,
+    caPieChartStyling
 }
