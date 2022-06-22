@@ -80,9 +80,10 @@ const extractCaData = (rawCaData, atLeastLowerBound, atLeastUpperBound) => {
         animationData.labels.push(`at least ${atLeast} assessments`)
         atleastCount = {}
         atleastCount[atLeast] = 0
-        rawCaData.map(challengeJson => {
-            if (challengeJson.assessments_count >= atLeast) {
-                atleastCount[atLeast] += challengeJson.assessments_count
+        rawCaData.flatMap(x => x.proposals).map(proposalJson => {
+            console.log(proposalJson)
+            if (proposalJson.assessments_count >= atLeast) {
+                atleastCount[atLeast] = atleastCount[atLeast] + 1 || 1
             }
         })
         animationData.datasets[0].data.push(atleastCount[atLeast])
