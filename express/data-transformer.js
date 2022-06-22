@@ -30,25 +30,59 @@ const fs = require('fs')
  * @param {*} atLeastUpperBound the minimum upper bound of assessments that must be present in the raw data and will be counted
  * @returns a formated data slice that can be used to create a chart
  */
-const extractChartDataSlice = (rawVcaData, atLeastLowerBound, atLeastUpperBound, forVca) => {
+const extractChartDataSlice = (rawData, atLeastLowerBound, atLeastUpperBound, forVca) => {
 
+    return forVca
+        ?
+        extractVcaData(rawData, atLeastLowerBound, atLeastUpperBound)
+        :
+        extractCaData(rawData, atLeastLowerBound, atLeastUpperBound)
+}
+
+const extractVcaData = (rawVcaData, atLeastLowerBound, atLeastUpperBound) => {
     const animationData = {
         labels: [],
         datasets: [
             {
-                label: forVca ? 'Reviews' : 'Assessments',
+                label: 'Reviews',
                 data: []
             }
         ]
     }
 
     for (let atLeast = atLeastLowerBound; atLeast <= atLeastUpperBound; atLeast++) {
-        animationData.labels.push(`at least ${atLeast} ${forVca ? 'reviews' : 'assessments'}`)
+        animationData.labels.push(`at least ${atLeast} reviews`)
         atleastCount = {}
         atleastCount[atLeast] = 0
         Object.keys(rawVcaData).map(key => {
             if (rawVcaData[key] >= atLeast) {
                 atleastCount[atLeast] = atleastCount[atLeast] + 1 || 1
+            }
+        })
+        animationData.datasets[0].data.push(atleastCount[atLeast])
+    }
+
+    return animationData
+}
+
+const extractCaData = (rawCaData, atLeastLowerBound, atLeastUpperBound) => {
+    const animationData = {
+        labels: [],
+        datasets: [
+            {
+                label: 'Assessments',
+                data: []
+            }
+        ]
+    }
+
+    for (let atLeast = atLeastLowerBound; atLeast <= atLeastUpperBound; atLeast++) {
+        animationData.labels.push(`at least ${atLeast} assessments`)
+        atleastCount = {}
+        atleastCount[atLeast] = 0
+        rawCaData.map(challengeJson => {
+            if (challengeJson.assessments_count >= atLeast) {
+                atleastCount[atLeast] += challengeJson.assessments_count
             }
         })
         animationData.datasets[0].data.push(atleastCount[atLeast])
@@ -100,7 +134,7 @@ const vCaChartOptions = {
 /**
  * This is the styling for the chart slice
  */
- const caPieChartStyling = {
+const caPieChartStyling = {
     weight: 12,
     backgroundColor: [
         "rgba(255, 0, 0, 1)",
@@ -147,10 +181,11 @@ const appendSliceToFundData = (slice, fundId, forVca) => {
 }
 
 const updateChartData = (fundId, minLowerBound, minUpperBound, forVca) => {
-    const rawVcaData = require(`./fund/${fundId}/raw.vca.data.json`)
-    const dataSlice = extractChartDataSlice(rawVcaData, minLowerBound, minUpperBound, forVca)
+    const caOrVca = forVca ? 'vca' : 'ca'
+    const rawDataSnapshot = require(`./fund/${fundId}/raw.${caOrVca}.data.json`)
+    const dataSlice = extractChartDataSlice(rawDataSnapshot, minLowerBound, minUpperBound, forVca)
     const updatedFundData = appendSliceToFundData(dataSlice, fundId, forVca)
-    writeDataToFile(updatedFundData, `${process.cwd()}/express/fund/${fundId}/formatted.vca.data.json`)
+    writeDataToFile(updatedFundData, `${process.cwd()}/express/fund/${fundId}/formatted.${caOrVca}.data.json`)
 }
 
 /**
