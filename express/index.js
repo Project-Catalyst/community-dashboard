@@ -40,6 +40,24 @@ app.get('/ca', (req, res) => {
     res.status(200).json(response)
 })
 
+app.get('/rewards/ca', (req, res) => {
+    const fundId = 8
+    const { assessorId } = req.query
+    const caRewardsData = require(`${process.cwd()}/express/fund/${fundId}/formatted.ca.rewards.data.json`)
+
+    const adjustedAssessmentNumber = caRewardsData.assessors.reduce((acc, current) => {
+        acc += (3 * current.excellent + current.good)
+    }, 0)
+
+    const rewardForASingleAssessment = caRewardsData.available_reward / adjustedAssessmentNumber
+
+    const currentAssessor = caRewardsData.assessors.filter(x => x.id === assessorId.trim())[0]
+    const currentReward = (currentAssessor.excellent * 3 * rewardForASingleAssessment)
+        + (currentAssessor.good * rewardForASingleAssessment)
+
+    res.status(200).json({ estimatedReward: currentReward })
+})
+
 app.get('/update/vca', (req, res) => {
     updateChartData(CURRENT_FUND_ID, VCA_MIN_LOWER_BOUND, VCA_MIN_UPPER_BOUND, true)
     res.json({ msg: "updated vca data" })
