@@ -1,0 +1,41 @@
+[
+    {
+        "challenge_id": 1251245,
+        "proposals": [
+            {
+                "proposal_id": 1,
+                "assessments_count": 123
+            },
+            {
+                "proposal_id": 2,
+                "assessments_count": 34
+            }
+        ]
+    },
+    {
+        "challenge_id": 1251245,
+        "proposals": [
+            {
+                "proposal_id": 4,
+                "assessments_count": 143
+            },
+            {
+                "proposal_id": 22,
+                "assessments_count": 134
+            }
+        ]
+    },
+    {
+        "challenge_id": 1251245,
+        "proposals": [
+            {
+                "proposal_id": 65,
+                "assessments_count": 112
+            },
+            {
+                "proposal_id": 56,
+                "assessments_count": 52
+            }
+        ]
+    }
+]
