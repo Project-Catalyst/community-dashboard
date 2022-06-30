@@ -2,16 +2,16 @@ const express = require('express')
 const app = express()
 const { updateChartData, vCaChartOptions, vCaPieChartStyling, caChartOptions, caPieChartStyling } = require('./data-transformer')
 
-const CURRENT_FUND_ID = 8
-const CA_MIN_LOWER_BOUND = 31
-const CA_MIN_UPPER_BOUND = 36
-const VCA_MIN_LOWER_BOUND = 31
-const VCA_MIN_UPPER_BOUND = 36
+const CURRENT_FUND_ID = 9
+const CA_MIN_LOWER_BOUND = 2
+const CA_MIN_UPPER_BOUND = 7
+const VCA_MIN_LOWER_BOUND = 90
+const VCA_MIN_UPPER_BOUND = 200
 
 const port = 5000
 
 app.get('/vca', (req, res) => {
-    const vCaFundsData = [7, 8].map(fundId => {
+    const vCaFundsData = [6, 7, 8].map(fundId => {
         const fundX = require(`${process.cwd()}/express/fund/${fundId}/formatted.vca.data.json`)
         Object.assign(fundX.fundData.animationData[0].datasets[0], vCaPieChartStyling)
         return fundX
@@ -26,7 +26,7 @@ app.get('/vca', (req, res) => {
 })
 
 app.get('/ca', (req, res) => {
-    const caFundsData = [7, 8].map(fundId => {
+    const caFundsData = [6, 7, 8].map(fundId => {
         const fundX = require(`${process.cwd()}/express/fund/${fundId}/formatted.ca.data.json`)
         Object.assign(fundX.fundData.animationData[0].datasets[0], caPieChartStyling)
         return fundX

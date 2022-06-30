@@ -50,12 +50,17 @@ const extractVcaData = (rawVcaData, atLeastLowerBound, atLeastUpperBound) => {
         ]
     }
 
-    for (let atLeast = atLeastLowerBound; atLeast <= atLeastUpperBound; atLeast++) {
+    for (let atLeast = atLeastLowerBound; atLeast <= atLeastUpperBound; atLeast+=20) {
         animationData.labels.push(`at least ${atLeast} reviews`)
         atleastCount = {}
         atleastCount[atLeast] = 0
-        Object.keys(rawVcaData).map(key => {
-            if (rawVcaData[key] >= atLeast) {
+        rawVcaData.flatMap(x => x.proposals).map(proposalJson => {
+            vcaReviewCount = proposalJson.assessments.reduce((acc, curr) => {
+                acc += curr.vca_reviews_count
+                return acc
+            }, 0)
+            console.log(vcaReviewCount)
+            if (vcaReviewCount >= atLeast) {
                 atleastCount[atLeast] = atleastCount[atLeast] + 1 || 1
             }
         })
@@ -81,8 +86,8 @@ const extractCaData = (rawCaData, atLeastLowerBound, atLeastUpperBound) => {
         atleastCount = {}
         atleastCount[atLeast] = 0
         rawCaData.flatMap(x => x.proposals).map(proposalJson => {
-            console.log(proposalJson)
-            if (proposalJson.assessments_count >= atLeast) {
+            console.log(proposalJson.assessments.length)
+            if (proposalJson.assessments.length >= atLeast) {
                 atleastCount[atLeast] = atleastCount[atLeast] + 1 || 1
             }
         })
@@ -123,7 +128,7 @@ const vCaChartOptions = {
     "plugins": {
         "title": {
             "display": true,
-            "text": "vCA Progress",
+            "text": "vPA Progress",
             "font": {
                 "size": 30
             }
@@ -163,7 +168,7 @@ const caChartOptions = {
     "plugins": {
         "title": {
             "display": true,
-            "text": "CA Progress",
+            "text": "PA Progress",
             "font": {
                 "size": 30
             }

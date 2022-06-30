@@ -1,0 +1,10 @@
+{
+    "available_reward": 0,
+    "assessors": [
+        {
+            "id": "assessor_001",
+            "excellent": 0,
+            "good": 0
+        }
+    ]
+}
