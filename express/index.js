@@ -8,7 +8,7 @@ const CA_MIN_UPPER_BOUND = 7
 const VCA_MIN_LOWER_BOUND = 90
 const VCA_MIN_UPPER_BOUND = 200
 
-const port = 5000
+const port = 5001
 
 app.get('/vca', (req, res) => {
     const vCaFundsData = [6, 7, 8].map(fundId => {
