@@ -2,6 +2,30 @@
     "fundName": "Fund 9",
     "fundId": "9",
     "fundData": {
-        "animationData": []
+        "animationData": [
+            {
+                "labels": [
+                    "at least 90 reviews",
+                    "at least 110 reviews",
+                    "at least 130 reviews",
+                    "at least 150 reviews",
+                    "at least 170 reviews",
+                    "at least 190 reviews"
+                ],
+                "datasets": [
+                    {
+                        "label": "Reviews",
+                        "data": [
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ]
+                    }
+                ]
+            }
+        ]
     }
 }

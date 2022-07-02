@@ -2,6 +2,32 @@
     "fundName": "Fund 9",
     "fundId": "9",
     "fundData": {
-        "animationData": []
+        "animationData": [
+            {
+                "labels": [
+                    "at least 1 assessments",
+                    "at least 2 assessments",
+                    "at least 3 assessments",
+                    "at least 4 assessments",
+                    "at least 5 assessments",
+                    "at least 6 assessments",
+                    "at least 7 assessments"
+                ],
+                "datasets": [
+                    {
+                        "label": "Assessments",
+                        "data": [
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ]
+                    }
+                ]
+            }
+        ]
     }
 }

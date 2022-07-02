@@ -18,12 +18,13 @@ function SliderChart(props) {
     const chartRef = useRef();
     const [animationIntervalId, setAnimationIntervalId] = React.useState();
 
-    const [fundNumber, setFundNumber] = React.useState(0);
+    const startPosition = 3
+    const [fundNumber, setFundNumber] = React.useState(startPosition);
     const [chartOptions, _] = useState(props.chartOptions);
 
     const [thumbPosition, setThumbPosition] = useState(0);
 
-    const [animation, setAnimation] = useState(props.fundsData[0].fundData.animationData);
+    const [animation, setAnimation] = useState(props.fundsData[startPosition].fundData.animationData);
 
     const handleDropdownChange = (event) => {
         const chosenFundIndex = event.target.value

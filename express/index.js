@@ -14,7 +14,7 @@ const port = 5001
 app.use(bodyparser.json());
 
 app.get('/vca', (req, res) => {
-    const vCaFundsData = [6, 7, 8].map(fundId => {
+    const vCaFundsData = [6, 7, 8, 9].map(fundId => {
         const fundX = require(`${process.cwd()}/express/fund/${fundId}/formatted.vca.data.json`)
         Object.assign(fundX.fundData.animationData[0].datasets[0], vCaPieChartStyling)
         return fundX
@@ -29,7 +29,7 @@ app.get('/vca', (req, res) => {
 })
 
 app.get('/ca', (req, res) => {
-    const caFundsData = [6, 7, 8].map(fundId => {
+    const caFundsData = [6, 7, 8, 9].map(fundId => {
         const fundX = require(`${process.cwd()}/express/fund/${fundId}/formatted.ca.data.json`)
         Object.assign(fundX.fundData.animationData[0].datasets[0], caPieChartStyling)
         return fundX
