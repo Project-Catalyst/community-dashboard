@@ -6,7 +6,7 @@
     "dev": "node express & next dev -p 5022",
     "dev-express": "nodemon ./express/index.js",
     "build": "next build",
-    "start": "node express & next start -p 5022",
+    "start": "next start -p 5022",
     "lint": "next lint"
   },
   "nodemonConfig": {
