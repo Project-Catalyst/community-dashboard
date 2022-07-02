@@ -1,4 +1,5 @@
 const fs = require('fs')
+const https = require('https');
 
 /**
  * This method will generate a chart data from a json file.
@@ -50,7 +51,7 @@ const extractVcaData = (rawVcaData, atLeastLowerBound, atLeastUpperBound) => {
         ]
     }
 
-    for (let atLeast = atLeastLowerBound; atLeast <= atLeastUpperBound; atLeast+=20) {
+    for (let atLeast = atLeastLowerBound; atLeast <= atLeastUpperBound; atLeast += 20) {
         animationData.labels.push(`at least ${atLeast} reviews`)
         atleastCount = {}
         atleastCount[atLeast] = 0
@@ -86,8 +87,8 @@ const extractCaData = (rawCaData, atLeastLowerBound, atLeastUpperBound) => {
         atleastCount = {}
         atleastCount[atLeast] = 0
         rawCaData.flatMap(x => x.proposals).map(proposalJson => {
-            console.log(proposalJson.assessments.length)
-            if (proposalJson.assessments.length >= atLeast) {
+            console.log(proposalJson.assessments_count)
+            if (proposalJson.assessments_count >= atLeast) {
                 atleastCount[atLeast] = atleastCount[atLeast] + 1 || 1
             }
         })
@@ -186,9 +187,39 @@ const appendSliceToFundData = (slice, fundId, forVca) => {
     return currentFundData
 }
 
-const updateChartData = (fundId, minLowerBound, minUpperBound, forVca) => {
+
+const requestSnapshot = async () => {
+    return new Promise((resolve, reject) => {
+        // https://github.com/Project-Catalyst/community-dashboard-backend/blob/main/snapshots/ca-backend_snapshot.json
+        let url = "https://raw.githubusercontent.com/Project-Catalyst/community-dashboard-backend/main/snapshots/ca-backend_snapshot.json";
+
+        https.get(url, (res) => {
+            let body = "";
+            res.on("data", (chunk) => {
+                body += chunk;
+            });
+            res.on("end", () => {
+                try {
+                    let json = JSON.parse(body);
+                    resolve(json)
+                } catch (error) {
+                    console.error(error.message);
+                    reject(error)
+                };
+            });
+        }).on("error", (error) => {
+            console.error(error.message);
+            reject(error)
+        });
+    })
+}
+
+const updateChartData = async (fundId, minLowerBound, minUpperBound, forVca) => {
     const caOrVca = forVca ? 'vca' : 'ca'
-    const rawDataSnapshot = require(`./fund/${fundId}/raw.${caOrVca}.data.json`)
+
+    const rawDataSnapshot = await requestSnapshot()
+    console.log(rawDataSnapshot)
+    // const rawDataSnapshot = require(`./fund/${fundId}/raw.${caOrVca}.data.json`)
     const dataSlice = extractChartDataSlice(rawDataSnapshot, minLowerBound, minUpperBound, forVca)
     const updatedFundData = appendSliceToFundData(dataSlice, fundId, forVca)
     writeDataToFile(updatedFundData, `${process.cwd()}/express/fund/${fundId}/formatted.${caOrVca}.data.json`)
