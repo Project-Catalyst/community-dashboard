@@ -144,13 +144,13 @@ const vCaChartOptions = {
 const caPieChartStyling = {
     weight: 12,
     backgroundColor: [
-        "rgba(255, 0, 0, 1)",
-        "rgba(0, 255, 0, 1)",
-        "rgba(0, 0, 255, 1)",
-        "rgba(123, 192, 192, 1)",
-        "rgba(153, 12, 255, 1)",
-        "rgba(255, 159, 164, 1)",
-        "rgba(123, 159, 164, 233)"
+        "rgba(36, 0, 0, 1)",
+        "rgba(121, 9, 9, 1)",
+        "rgba(94, 54, 63, 1)",
+        "rgba(68, 98, 117, 1)",
+        "rgba(40, 145, 174, 1)",
+        "rgba(16, 185, 222, 1)",
+        "rgba(0, 212, 255, 1)"
     ],
     borderColor: [
         "rgba(255, 99, 132, 1)",
@@ -159,7 +159,7 @@ const caPieChartStyling = {
         "rgba(75, 192, 192, 1)",
         "rgba(153, 102, 255, 1)",
         "rgba(255, 159, 64, 1)",
-        "rgba(255, 159, 64, 1)"
+        "rgba(0, 212, 255, 1)"
     ],
     borderWidth: 1
 }
