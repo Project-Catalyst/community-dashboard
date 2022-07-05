@@ -1,5 +1,10 @@
 {
     "fundName": "Fund 9",
     "fundId": "9",
-    "data": []
+    "fundsData": [
+        {
+            "names": [],
+            "datasets": []
+        }
+    ]
 }
