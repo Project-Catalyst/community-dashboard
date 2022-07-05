@@ -149,7 +149,8 @@ const caPieChartStyling = {
         "rgba(0, 0, 255, 1)",
         "rgba(123, 192, 192, 1)",
         "rgba(153, 12, 255, 1)",
-        "rgba(255, 159, 164, 1)"
+        "rgba(255, 159, 164, 1)",
+        "rgba(123, 159, 164, 233)"
     ],
     borderColor: [
         "rgba(255, 99, 132, 1)",
@@ -157,6 +158,7 @@ const caPieChartStyling = {
         "rgba(255, 206, 86, 1)",
         "rgba(75, 192, 192, 1)",
         "rgba(153, 102, 255, 1)",
+        "rgba(255, 159, 64, 1)",
         "rgba(255, 159, 64, 1)"
     ],
     borderWidth: 1
