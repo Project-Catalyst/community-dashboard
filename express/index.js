@@ -43,6 +43,15 @@ app.get('/ca', (req, res) => {
     res.status(200).json(response)
 })
 
+app.get('/ca-by-challenges', (req, res) => {
+    const fundId = 9
+    const fundX = require(`${process.cwd()}/express/fund/${fundId}/formatted.ca.challenges.data.json`)
+    // console.log(fundX)
+    // Object.assign(fundX.fundData.animationData[0].datasets[0], caPieChartStyling)
+    console.log(fundX)
+    res.status(200).json(fundX)
+})
+
 app.get('/rewards/ca', (req, res) => {
     const fundId = 8
     const { assessorId } = req.query

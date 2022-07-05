@@ -218,11 +218,68 @@ const updateChartData = async (fundId, minLowerBound, minUpperBound, forVca) => 
     const caOrVca = forVca ? 'vca' : 'ca'
 
     const rawDataSnapshot = await requestSnapshot()
-    console.log(rawDataSnapshot)
+    
     // const rawDataSnapshot = require(`./fund/${fundId}/raw.${caOrVca}.data.json`)
     const dataSlice = extractChartDataSlice(rawDataSnapshot, minLowerBound, minUpperBound, forVca)
     const updatedFundData = appendSliceToFundData(dataSlice, fundId, forVca)
     writeDataToFile(updatedFundData, `${process.cwd()}/express/fund/${fundId}/formatted.${caOrVca}.data.json`)
+
+    const extractChallengesData = extractCaChallenges(rawDataSnapshot, minLowerBound, minUpperBound)
+    const updatedChallengesData = appendSliceToChallengesData(extractChallengesData, fundId)
+    writeDataToFile(updatedChallengesData, `${process.cwd()}/express/fund/${fundId}/formatted.ca.challenges.data.json`)
+}
+
+
+const appendSliceToChallengesData = (slice, fundId) => {
+    const challengesData = require(`./fund/${fundId}/formatted.ca.challenges.data.json`)
+    challengesData.fundsData.push(slice)
+    return challengesData
+}
+
+
+const extractCaChallenges = (rawCaData, atLeastLowerBound, atLeastUpperBound) => {
+
+    const challengeFund9Map = {
+        26595: "Dapps, Products & Integrations",
+        26601: "dRep improvement and onboarding",
+        26597: "Developer Ecosystem",
+        26600: "Grow Africa, Grow Cardano",
+        26593: "The Great Migration (from Ethereum)",
+        26594: "DAOs <3 Cardano",
+        26596: "Legal & Financial Implementations",
+        26598: "Cross-Chain Collaboration",
+        26602: "Grow East Asia, Grow Cardano",
+        26605: "Catalyst Natives X Cardashift: Demonstrating and monetizing impact",
+        26599: "Challenge & Scouted for Students",
+        26603: "Building (on) Blockfrost",
+        26604: "Fund10 challenge setting"
+    }
+
+    const data = {
+        names: [],
+        datasets: []
+    }
+    rawCaData.map(challengeData => {
+
+        const challengeDataset = []
+        for (let atLeast = atLeastLowerBound; atLeast <= atLeastUpperBound; atLeast++) {
+
+            atleastCount = {}
+            atleastCount[atLeast] = 0
+
+            challengeData.proposals.flatMap(proposalJson => {
+                if (proposalJson.assessments_count >= atLeast) {
+                    atleastCount[atLeast] = atleastCount[atLeast] + 1 || 1
+                }
+            })
+            challengeDataset.push(atleastCount[atLeast])
+        }
+
+        data.names.push(challengeFund9Map[challengeData.challenge_id])
+        data.datasets.push(challengeDataset)
+    })
+
+    return data
 }
 
 /**
