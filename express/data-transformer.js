@@ -112,12 +112,12 @@ const vCaPieChartStyling = {
         "rgba(255, 159, 64, 0.2)"
     ],
     borderColor: [
-        "rgba(255, 99, 132, 1)",
-        "rgba(54, 162, 235, 1)",
-        "rgba(255, 206, 86, 1)",
-        "rgba(75, 192, 192, 1)",
-        "rgba(153, 102, 255, 1)",
-        "rgba(255, 159, 64, 1)"
+        "rgba(255, 99, 132, 0.2)",
+        "rgba(54, 162, 235, 0.2)",
+        "rgba(255, 206, 86, 0.2)",
+        "rgba(75, 192, 192, 0.2)",
+        "rgba(153, 102, 255, 0.2)",
+        "rgba(255, 159, 64, 0.2)"
     ],
     borderWidth: 1
 }
@@ -153,12 +153,12 @@ const caPieChartStyling = {
         "rgba(0, 212, 255, 1)"
     ],
     borderColor: [
-        "rgba(255, 99, 132, 1)",
-        "rgba(54, 162, 235, 1)",
-        "rgba(255, 206, 86, 1)",
-        "rgba(75, 192, 192, 1)",
-        "rgba(153, 102, 255, 1)",
-        "rgba(255, 159, 64, 1)",
+        "rgba(36, 0, 0, 1)",
+        "rgba(121, 9, 9, 1)",
+        "rgba(94, 54, 63, 1)",
+        "rgba(68, 98, 117, 1)",
+        "rgba(40, 145, 174, 1)",
+        "rgba(16, 185, 222, 1)",
         "rgba(0, 212, 255, 1)"
     ],
     borderWidth: 1
@@ -264,17 +264,19 @@ const extractCaChallenges = (rawCaData, atLeastLowerBound, atLeastUpperBound) =>
     rawCaData.map(challengeData => {
 
         const challengeDataset = []
-        for (let atLeast = atLeastLowerBound; atLeast <= atLeastUpperBound; atLeast++) {
+        for (let exactly = atLeastLowerBound; exactly <= atLeastUpperBound; exactly++) {
 
-            atleastCount = {}
-            atleastCount[atLeast] = 0
+            let exactCount = {}
+            exactCount[exactly] = 0
 
             challengeData.proposals.flatMap(proposalJson => {
-                if (proposalJson.assessments_count >= atLeast) {
-                    atleastCount[atLeast] = atleastCount[atLeast] + 1 || 1
+                if (proposalJson.assessments_count === exactly) {
+                    exactCount[exactly] = exactCount[exactly] + 1 || 1
+                } else if(proposalJson.assessments_count >= atLeastUpperBound) {
+                    exactCount[atLeastUpperBound] = exactCount[atLeastUpperBound] + 1 || 1
                 }
             })
-            challengeDataset.push(atleastCount[atLeast])
+            challengeDataset.push(exactCount[exactly])
         }
 
         data.names.push(challengeFund9Map[challengeData.challenge_id])
