@@ -1,4 +1,5 @@
-const data = require("./formatted.ca.challenges.data.json")
+// const data = require("./formatted.ca.challenges.data.json")
+const data = require("./formatted.ca.data.json")
 
 
 // {
@@ -31,12 +32,10 @@ const data = require("./formatted.ca.challenges.data.json")
 //                     25,
 //                     25,
 //                     23,
-const changedData = data.fundsData.map(fundData => {
-    fundData.datasets = fundData.datasets.map((dataset, index) => {
-        return dataset.map((item, index) => {
-            if (index < (dataset.length - 1)) item -= dataset[index + 1]
-            return item
-        })
+const changedData = data.fundData.animationData.map(fundData => {
+    fundData.datasets[0].data = fundData.datasets[0].data.map((item, index) => {
+        if (index < (fundData.datasets[0].data.length - 1)) item -= fundData.datasets[0].data[index + 1]
+        return item
     })
     return fundData
 })
@@ -54,4 +53,4 @@ const writeDataToFile = (data, fileName) => {
     })
 }
 
-writeDataToFile(changedData, "new.formatted.ca.challenges.data.json")
+writeDataToFile(changedData, "new.formatted.ca.data.json")
