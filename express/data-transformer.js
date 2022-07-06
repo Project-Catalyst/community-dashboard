@@ -7,10 +7,10 @@ const https = require('https');
  * The end result looks like:
  {
     "labels": [
-        "1 assessment/reviews",
-        "2 assessments/reviews",
-        ".. assessments/reviews",
-        "minimumNumberOfAssessments assessments/reviews",
+        "at least 1 assessment/reviews",
+        "at least 2 assessments/reviews",
+        "at least .. assessments/reviews",
+        "at least minimumNumberOfAssessments assessments/reviews",
     ],
     "datasets": [
         {
@@ -52,7 +52,7 @@ const extractVcaData = (rawVcaData, atLeastLowerBound, atLeastUpperBound) => {
     }
 
     for (let atLeast = atLeastLowerBound; atLeast <= atLeastUpperBound; atLeast += 20) {
-        animationData.labels.push(`${atLeast} reviews`)
+        animationData.labels.push(`at least ${atLeast} reviews`)
         atleastCount = {}
         atleastCount[atLeast] = 0
         rawVcaData.flatMap(x => x.proposals).map(proposalJson => {
@@ -83,7 +83,7 @@ const extractCaData = (rawCaData, atLeastLowerBound, atLeastUpperBound) => {
     }
 
     for (let atLeast = atLeastLowerBound; atLeast <= atLeastUpperBound; atLeast++) {
-        animationData.labels.push(`${atLeast} assessments`)
+        animationData.labels.push(`at least ${atLeast} assessments`)
         atleastCount = {}
         atleastCount[atLeast] = 0
         rawCaData.flatMap(x => x.proposals).map(proposalJson => {
