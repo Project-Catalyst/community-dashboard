@@ -89,16 +89,25 @@ function SliderChart(props) {
                     </Button>
                 </div>
                 <div className="col-md-7 mb-5">
-                    <Slider
-                        aria-label="chartDataSlider"
-                        defaultValue={0}
-                        valueLabelDisplay="off"
-                        onChange={handleSliderChange}
-                        step={1}
-                        min={0}
-                        marks
-                        max={animation.length - 1}
-                    />
+                    <div className="row">
+                        <div className='col-md-2 text-center my-auto' style={{ fontWeight: "bold" }}>Beggining</div>
+
+                        <div className="col-md-6 m-5 ">
+                            <Slider
+                                aria-label="chartDataSlider"
+                                defaultValue={0}
+                                valueLabelDisplay="off"
+                                onChange={handleSliderChange}
+                                step={1}
+                                min={0}
+                                marks
+                                max={animation.length - 1}
+                            />
+                        </div>
+                        <div className='col-md-2 my-auto' style={{ fontWeight: "bold" }}>Recent</div>
+
+                    </div>
+
                 </div>
             </div>
         </div>
