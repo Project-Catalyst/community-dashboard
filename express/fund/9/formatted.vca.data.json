@@ -1,0 +1,31 @@
+{
+    "fundName": "Fund 9",
+    "fundId": "9",
+    "fundData": {
+        "animationData": [
+            {
+                "labels": [
+                    "90 reviews",
+                    "110 reviews",
+                    "130 reviews",
+                    "150 reviews",
+                    "170 reviews",
+                    "190 reviews"
+                ],
+                "datasets": [
+                    {
+                        "label": "Reviews",
+                        "data": [
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
