@@ -29,13 +29,13 @@ function Home(props) {
       <Head>
         <title>Community Dashboard</title>
       </Head>
-      <Link
+      {/* <Link
         href={`/estimator`}
         color="inherit">
         <a
           className="position-absolute top-0 end-0 m-4 text-decoration-none"
         >CA / vCA Rewards Estimator</a>
-      </Link>
+      </Link> */}
       <SliderChart
         fundsData={props.caFundsData}
         chartOptions={props.caChartOptions}

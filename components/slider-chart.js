@@ -26,6 +26,8 @@ function SliderChart(props) {
 
     const [animation, setAnimation] = useState(props.fundsData[startPosition].fundData.animationData);
 
+    const totalAssessments = animation[thumbPosition].datasets[0].data.reduce((acc, current) => acc += current, 0)
+
     const handleDropdownChange = (event) => {
         const chosenFundIndex = event.target.value
         const animData = props.fundsData[chosenFundIndex].fundData.animationData
@@ -61,32 +63,40 @@ function SliderChart(props) {
 
         <div className='container border mt-5'>
             <div className="row justify-content-center mt-5">
-                <div className="col-md-6">
-                    <FormControl fullWidth>
-                        <Select
-                            value={fundNumber}
-                            label="Fund"
-                            onChange={handleDropdownChange}>
-                            {menuItems}
-                        </Select>
-                    </FormControl>
-                    <PolarArea
-                        ref={chartRef}
-                        data={animation[thumbPosition]}
-                        options={chartOptions}
-                        onClick={(event) => {
-                            let possiblePieSlice = getElementAtEvent(chartRef.current, event)
-                            let index = possiblePieSlice[0]?.index
-                            if (index !== undefined) {
-                                console.log(index)
-                            }
-                        }}
-                    />
-                    <Button
-                        fullWidth
-                        onClick={runAnimation}
-                    > Run Animation
-                    </Button>
+                <div className="col-md-12">
+                    <div className="row mt-5">
+                        <div className="col-md-2 text-center my-auto" style={{ fontSize: 20 }}>
+                            <p>Total assessments:</p>
+                            <p style={{ fontWeight: "bold" }}>{totalAssessments}</p>
+                        </div>
+                        <div className="col-md-6">
+                            <FormControl fullWidth>
+                                <Select
+                                    value={fundNumber}
+                                    label="Fund"
+                                    onChange={handleDropdownChange}>
+                                    {menuItems}
+                                </Select>
+                            </FormControl>
+                            <PolarArea
+                                ref={chartRef}
+                                data={animation[thumbPosition]}
+                                options={chartOptions}
+                                onClick={(event) => {
+                                    let possiblePieSlice = getElementAtEvent(chartRef.current, event)
+                                    let index = possiblePieSlice[0]?.index
+                                    if (index !== undefined) {
+                                        console.log(index)
+                                    }
+                                }}
+                            />
+                            <Button
+                                fullWidth
+                                onClick={runAnimation}
+                            > Run Animation
+                            </Button>
+                        </div>
+                    </div>
                 </div>
                 <div className="col-md-7 mb-5">
                     <div className="row">
