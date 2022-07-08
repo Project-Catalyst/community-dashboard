@@ -33,10 +33,13 @@ const data = require("./formatted.ca.data.json")
 //                     25,
 //                     23,
 const changedData = data.fundData.animationData.map(fundData => {
-    fundData.datasets[0].data = fundData.datasets[0].data.map((item, index) => {
-        if (index < (fundData.datasets[0].data.length - 1)) item -= fundData.datasets[0].data[index + 1]
-        return item
-    })
+    fundData.assessmentsCount = fundData.datasets[0].data.map((item, index, array) => {
+        return item * (index + 1)
+    }).reduce((acc, current) => acc += current, 0)
+    // fundData.datasets[0].data = fundData.datasets[0].data.map((item, index) => {
+    //     if (index < (fundData.datasets[0].data.length - 1)) item -= fundData.datasets[0].data[index + 1]
+    //     return item
+    // })
     return fundData
 })
 

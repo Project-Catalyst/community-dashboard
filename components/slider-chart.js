@@ -26,7 +26,7 @@ function SliderChart(props) {
 
     const [animation, setAnimation] = useState(props.fundsData[startPosition].fundData.animationData);
 
-    const totalAssessments = animation[thumbPosition].datasets[0].data.reduce((acc, current) => acc += current, 0)
+    const totalReviewedProposals = animation[thumbPosition].datasets[0].data.reduce((acc, current) => acc += current, 0)
 
     const handleDropdownChange = (event) => {
         const chosenFundIndex = event.target.value
@@ -66,8 +66,10 @@ function SliderChart(props) {
                 <div className="col-md-12">
                     <div className="row mt-5">
                         <div className="col-md-2 text-center my-auto" style={{ fontSize: 20 }}>
+                            <p>Total reviewed proposals:</p>
+                            <p style={{ fontWeight: "bold" }}>{totalReviewedProposals}</p>
                             <p>Total assessments:</p>
-                            <p style={{ fontWeight: "bold" }}>{totalAssessments}</p>
+                            <p style={{ fontWeight: "bold" }}>{animation[thumbPosition]?.assessmentsCount}</p>
                         </div>
                         <div className="col-md-6">
                             <FormControl fullWidth>
