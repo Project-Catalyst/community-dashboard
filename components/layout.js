@@ -19,7 +19,7 @@ export default function Layout({ children, home }) {
       {/* NAVBAR */}
       <>
         <Navbar fixed="top" bg="dark" variant="dark">
-            <Navbar.Brand href="#home">
+            <Navbar.Brand href="/">
               <img
                 alt=""
                 src="/favicon.ico"
@@ -27,9 +27,10 @@ export default function Layout({ children, home }) {
                 height="30"
                 className="d-inline-block align-top"
               />{' '}
-            Catalyst Community Dashboard
+              Catalyst Community Dashboard
             </Navbar.Brand>
             <Navbar.Collapse className="justify-content-end">
+              <Nav.Link href="/estimator" style={{color:"white"}}>Rewards Estimator</Nav.Link>
               {/* <Navbar.Text>
                 <p>INSERT PA-PROCESS COUNTING</p>
               </Navbar.Text> */}
@@ -37,23 +38,7 @@ export default function Layout({ children, home }) {
         </Navbar>
       </>
 
-      {/* MESSAGE CARD */}
-      <div style={{'padding-top': '100px'}}>
-        <Card className="text-center">
-          <Card.Header as="h5">AIM Catalyst Community Dashboard</Card.Header>
-          <Card.Body>
-            {/* <Card.Title>Welcome PAs and community members,</Card.Title> */}
-            <Card.Text>
-              <b>Welcome PAs and community members,</b>
-              <br/>This is a new AIM tool to provide information on the on-going PA Process Progress and vCA Reviews. 
-              <br/>The charts here presented are a work in progress. 
-              <br/>Please, bear with us while we work on some needed experience updates.
-            </Card.Text>
-            {/* <Button variant="primary">Go somewhere</Button> */}
-          </Card.Body>
-          {/* <Card.Footer className="text-muted">2 days ago</Card.Footer> */}
-        </Card>
-      </div>
+      
 
       {/* MAIN VIEW */}
       <main>{children}</main>
