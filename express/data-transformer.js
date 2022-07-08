@@ -73,6 +73,7 @@ const extractVcaData = (rawVcaData, atLeastLowerBound, atLeastUpperBound) => {
 
 const extractCaData = (rawCaData, atLeastLowerBound, atLeastUpperBound) => {
     const animationData = {
+        assessmentsCount: 0,
         labels: [],
         datasets: [
             {
@@ -95,6 +96,8 @@ const extractCaData = (rawCaData, atLeastLowerBound, atLeastUpperBound) => {
         })
         animationData.datasets[0].data.push(exactCount[exactly])
     }
+
+    animationData.assessmentsCount += rawCaData.flatMap(x => x.proposals).map(proposalJson => proposalJson.assessments_count).reduce((acc, current) => acc += current, 0)
 
     return animationData
 }
