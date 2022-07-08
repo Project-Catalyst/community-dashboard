@@ -62,7 +62,7 @@ export default function Estimator() {
 
             {/* MESSAGE CARD */}
             <div style={{'padding-top': '100px'}}>
-                <Card className="text-center">
+                <Card>
                 <Card.Header as="h5">AIM Catalyst Rewards Estimator</Card.Header>
                 <Card.Body>
                     {/* <Card.Title>Welcome PAs and community members,</Card.Title> */}

@@ -33,7 +33,7 @@ function Home(props) {
 
       {/* MESSAGE CARD */}
       <div style={{'padding-top': '100px'}}>
-        <Card className="text-center">
+        <Card>
           <Card.Header as="h5">AIM Catalyst Community Dashboard</Card.Header>
           <Card.Body>
             {/* <Card.Title>Welcome PAs and community members,</Card.Title> */}

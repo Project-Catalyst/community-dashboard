@@ -1,7 +1,7 @@
 import Head from 'next/head';
 // import styles from './layout.module.css';
 import Link from 'next/link';
-import { Button, Card, Container, Image, Nav, Navbar } from 'react-bootstrap';
+import { Image, Nav, Navbar } from 'react-bootstrap';
 import {FaGithub, FaTwitter, FaTelegram} from "react-icons/fa"
 
 export default function Layout({ children, home }) {
