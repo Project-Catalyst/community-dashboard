@@ -4,9 +4,10 @@ import Head from 'next/head';
 import Link from 'next/link'
 import SliderChart from '../components/slider-chart';
 import ChallengesChart from '../components/challenges-chart';
-import { Card } from 'react-bootstrap';
+import { Card, Tab, Tabs } from 'react-bootstrap';
+import React, { useState } from 'react';
 
-import { getVcaChartDataFromJson, getCaChartDataFromJson, getChallengesChartDataFromJson } from '../lib/chart-data-logic';
+import { getVcaChartDataFromJson, getCaChartDataFromJson, getChallengesChartDataFromJson, updateVcaJsonData} from '../lib/chart-data-logic';
 
 export async function getStaticProps() {
   const vCaData = await getVcaChartDataFromJson()
@@ -32,7 +33,7 @@ function Home(props) {
       </Head>
 
       {/* MESSAGE CARD */}
-      <div style={{'padding-top': '100px'}}>
+      <div style={{'padding-top': '10vh', 'padding-bottom': '3vh'}}>
         <Card>
           <Card.Header as="h5">AIM Catalyst Community Dashboard</Card.Header>
           <Card.Body>
@@ -49,15 +50,27 @@ function Home(props) {
         </Card>
       </div>  
 
-      <SliderChart
-        fundsData={props.caFundsData}
-        chartOptions={props.caChartOptions}
-      />
+      <Tabs
+        defaultActiveKey="vca"
+        id="sliderCharts"
+        className="mb-2"
+      >
+        <Tab eventKey="ca" title="ca">
+          <SliderChart
+            fundsData={props.caFundsData}
+            chartOptions={props.caChartOptions}
+          />
+        </Tab>
+        <Tab eventKey="vca" title="vCa">
+          <SliderChart
+            fundsData={props.vCaFundsData}
+            chartOptions={props.vCaChartOptions}
+          />
+        </Tab>
+      </Tabs>
+
       <ChallengesChart challenges={props.challenges} />
-      {/* <SliderChart
-        fundsData={props.vCaFundsData}
-        chartOptions={props.vCaChartOptions}
-      /> */}
+
     </Layout>
   )
 }
