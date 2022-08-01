@@ -194,10 +194,15 @@ const appendSliceToFundData = (slice, fundId, forVca) => {
 }
 
 
-const requestSnapshot = async () => {
+const requestSnapshot = async (forVca) => {
+    let url;
+    if (forVca) { url = "https://raw.githubusercontent.com/Project-Catalyst/community-dashboard-backend/main/snapshots/vca-backend_snapshot.json"; } 
+    else { url = "https://raw.githubusercontent.com/Project-Catalyst/community-dashboard-backend/main/snapshots/ca-backend_snapshot.json"; }
+    console.log(url)
+
     return new Promise((resolve, reject) => {
         // https://github.com/Project-Catalyst/community-dashboard-backend/blob/main/snapshots/ca-backend_snapshot.json
-        let url = "https://raw.githubusercontent.com/Project-Catalyst/community-dashboard-backend/main/snapshots/ca-backend_snapshot.json";
+        // let url = "https://raw.githubusercontent.com/Project-Catalyst/community-dashboard-backend/main/snapshots/ca-backend_snapshot.json";
 
         https.get(url, (res) => {
             let body = "";
@@ -223,7 +228,7 @@ const requestSnapshot = async () => {
 const updateChartData = async (fundId, minLowerBound, minUpperBound, forVca) => {
     const caOrVca = forVca ? 'vca' : 'ca'
 
-    const rawDataSnapshot = await requestSnapshot()
+    const rawDataSnapshot = await requestSnapshot(forVca)
     
     // const rawDataSnapshot = require(`./fund/${fundId}/raw.${caOrVca}.data.json`)
     const dataSlice = extractChartDataSlice(rawDataSnapshot, minLowerBound, minUpperBound, forVca)
