@@ -51,17 +51,17 @@ function Home(props) {
       </div>  
 
       <Tabs
-        defaultActiveKey="vca"
+        defaultActiveKey="vpa"
         id="sliderCharts"
         className="mb-2"
       >
-        <Tab eventKey="ca" title="ca">
+        <Tab eventKey="pa" title="PA">
           <SliderChart
             fundsData={props.caFundsData}
             chartOptions={props.caChartOptions}
           />
         </Tab>
-        <Tab eventKey="vca" title="vCa">
+        <Tab eventKey="vpa" title="vPA">
           <SliderChart
             fundsData={props.vCaFundsData}
             chartOptions={props.vCaChartOptions}
