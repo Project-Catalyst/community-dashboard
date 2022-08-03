@@ -4,8 +4,10 @@ import Head from 'next/head';
 import Link from 'next/link'
 import SliderChart from '../components/slider-chart';
 import ChallengesChart from '../components/challenges-chart';
+import { Card, Tab, Tabs } from 'react-bootstrap';
+import React, { useState } from 'react';
 
-import { getVcaChartDataFromJson, getCaChartDataFromJson, getChallengesChartDataFromJson } from '../lib/chart-data-logic';
+import { getVcaChartDataFromJson, getCaChartDataFromJson, getChallengesChartDataFromJson, updateVcaJsonData} from '../lib/chart-data-logic';
 
 export async function getStaticProps() {
   const vCaData = await getVcaChartDataFromJson()
@@ -29,22 +31,46 @@ function Home(props) {
       <Head>
         <title>Community Dashboard</title>
       </Head>
-      {/* <Link
-        href={`/estimator`}
-        color="inherit">
-        <a
-          className="position-absolute top-0 end-0 m-4 text-decoration-none"
-        >CA / vCA Rewards Estimator</a>
-      </Link> */}
-      <SliderChart
-        fundsData={props.caFundsData}
-        chartOptions={props.caChartOptions}
-      />
+
+      {/* MESSAGE CARD */}
+      <div style={{'padding-top': '10vh', 'padding-bottom': '3vh'}}>
+        <Card>
+          <Card.Header as="h5">AIM Catalyst Community Dashboard</Card.Header>
+          <Card.Body>
+            {/* <Card.Title>Welcome PAs and community members,</Card.Title> */}
+            <Card.Text>
+              <b>Welcome PAs and community members,</b>
+              <br/>This is a new AIM tool to provide information on the on-going PA Process Progress. 
+              <br/>The charts here presented are a work in progress. 
+              <br/>Please, bear with us while we work on some needed experience updates.
+            </Card.Text>
+            {/* <Button variant="primary">Go somewhere</Button> */}
+          </Card.Body>
+          {/* <Card.Footer className="text-muted">2 days ago</Card.Footer> */}
+        </Card>
+      </div>  
+
+      <Tabs
+        defaultActiveKey="vca"
+        id="sliderCharts"
+        className="mb-2"
+      >
+        <Tab eventKey="ca" title="ca">
+          <SliderChart
+            fundsData={props.caFundsData}
+            chartOptions={props.caChartOptions}
+          />
+        </Tab>
+        <Tab eventKey="vca" title="vCa">
+          <SliderChart
+            fundsData={props.vCaFundsData}
+            chartOptions={props.vCaChartOptions}
+          />
+        </Tab>
+      </Tabs>
+
       <ChallengesChart challenges={props.challenges} />
-      {/* <SliderChart
-        fundsData={props.vCaFundsData}
-        chartOptions={props.vCaChartOptions}
-      /> */}
+
     </Layout>
   )
 }
